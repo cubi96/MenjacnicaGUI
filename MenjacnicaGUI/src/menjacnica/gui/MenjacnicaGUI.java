@@ -62,7 +62,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem mntmDodajKurs;
 	private JMenuItem mntmObrisiKurs;
 	private JMenuItem mntmIzvrsiZamenu;
-	private JTextArea textArea;
+	public static JTextArea textArea;
 	private JScrollPane scrollPane_1;
 	public static LinkedList<Kurs> kursevi = new LinkedList<>();
 
@@ -130,6 +130,11 @@ public class MenjacnicaGUI extends JFrame {
 			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 			JButton btnDodajKurs = new JButton("Dodaj kurs");
+			btnDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					OtvoriDodajKurs();					
+				}
+			});
 			btnDodajKurs.setPreferredSize(new Dimension(100, 23));
 			panel.add(btnDodajKurs);
 
@@ -281,6 +286,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmDodajKurs() {
 		if (mntmDodajKurs == null) {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					OtvoriDodajKurs();
+				}
+			});
 
 		}
 		return mntmDodajKurs;
@@ -300,5 +310,10 @@ public class MenjacnicaGUI extends JFrame {
 
 		}
 		return mntmIzvrsiZamenu;
+	}
+	public void OtvoriDodajKurs(){
+		DodajKursGUI d = new DodajKursGUI();
+		d.setVisible(true);
+		d.setLocationRelativeTo(MenjacnicaGUI);
 	}
 }
