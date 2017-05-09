@@ -125,7 +125,7 @@ public class ObrisiKursGUI extends JFrame {
 						+ " Kupovni kurs: " + textFieldKupovni.getText() + " Srednji kurs: "
 						+ textFieldSrednji.getText() + " Prodajni kurs: " + textFieldProdajni.getText()
 						+ " Skracenica: " + textFieldSkraceni.getText();
-				MenjacnicaGUI.textArea.setText(MenjacnicaGUI.textArea.getText() + txt);
+				MenjacnicaGUI.textArea.setText(MenjacnicaGUI.textArea.getText() + txt + "\n");
 			}
 		});
 		btnObrisi.setEnabled(false);

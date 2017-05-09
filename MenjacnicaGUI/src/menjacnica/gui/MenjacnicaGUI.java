@@ -126,7 +126,7 @@ public class MenjacnicaGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setPreferredSize(new Dimension(120, 0));
+			panel.setPreferredSize(new Dimension(130, 0));
 			panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 			JButton btnDodajKurs = new JButton("Dodaj kurs");
@@ -135,7 +135,7 @@ public class MenjacnicaGUI extends JFrame {
 					OtvoriDodajKurs();					
 				}
 			});
-			btnDodajKurs.setPreferredSize(new Dimension(100, 23));
+			btnDodajKurs.setPreferredSize(new Dimension(120, 23));
 			panel.add(btnDodajKurs);
 
 			JButton btnObrisiKurs = new JButton("Obrisi kurs");
@@ -144,11 +144,16 @@ public class MenjacnicaGUI extends JFrame {
 					OtvoriObrisiKurs();
 				}
 			});
-			btnObrisiKurs.setPreferredSize(new Dimension(100, 23));
+			btnObrisiKurs.setPreferredSize(new Dimension(120, 23));
 			panel.add(btnObrisiKurs);
 
-			JButton btnIzmeniKurs = new JButton("Izmeni kurs");
-			btnIzmeniKurs.setPreferredSize(new Dimension(100, 23));
+			JButton btnIzmeniKurs = new JButton("Izvrsi zamenu");
+			btnIzmeniKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					otvoriIzvrsiZamenu();
+				}
+			});
+			btnIzmeniKurs.setPreferredSize(new Dimension(120, 23));
 			panel.add(btnIzmeniKurs);
 		}
 		return panel;
@@ -208,6 +213,21 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmSave() {
 		if (mntmSave == null) {
 			mntmSave = new JMenuItem("Save");
+			mntmSave.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFileChooser jf = new JFileChooser();
+					int odgovor = jf.showSaveDialog(MenjacnicaGUI);
+					if(odgovor== JFileChooser.APPROVE_OPTION){
+						File file = jf.getSelectedFile();
+						String txt = "";
+						txt = file.getAbsolutePath();
+						if(!txt.equals("")){
+							textArea.setText(textArea.getText() + txt + "\n");
+						}
+					}
+					
+				}
+			});
 			mntmSave.setIcon(new ImageIcon(MenjacnicaGUI.class.getResource("/save.png")));
 
 			mntmSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_MASK));
@@ -317,6 +337,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIzvrsiZamenu() {
 		if (mntmIzvrsiZamenu == null) {
 			mntmIzvrsiZamenu = new JMenuItem("Izvrsi zamenu");
+			mntmIzvrsiZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					otvoriIzvrsiZamenu();
+				}
+			});
 
 		}
 		return mntmIzvrsiZamenu;
@@ -330,5 +355,10 @@ public class MenjacnicaGUI extends JFrame {
 		ObrisiKursGUI o = new ObrisiKursGUI();
 		o.setVisible(true);
 		o.setLocationRelativeTo(MenjacnicaGUI);
+	}
+	public void otvoriIzvrsiZamenu(){
+		IzvrsiZamenuGUI i = new IzvrsiZamenuGUI();
+		i.setVisible(true);
+		i.setLocationRelativeTo(MenjacnicaGUI);
 	}
 }

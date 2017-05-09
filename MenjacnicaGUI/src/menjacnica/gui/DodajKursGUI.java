@@ -114,7 +114,7 @@ public class DodajKursGUI extends JFrame {
 						+ " Kupovni kurs: " + textFieldKupovni.getText() + " Srednji kurs: "
 						+ textFieldSrednji.getText() + " Prodajni kurs: " + textFieldProdajni.getText()
 						+ " Skracenica: " + textFieldSkracenica.getText();
-				MenjacnicaGUI.textArea.setText(MenjacnicaGUI.textArea.getText() + txt);
+				MenjacnicaGUI.textArea.setText(MenjacnicaGUI.textArea.getText() + txt + "\n");
 			}
 		});
 		btnDodaj.setBounds(10, 277, 193, 23);
