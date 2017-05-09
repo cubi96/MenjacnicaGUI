@@ -8,11 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class DodajKursGUI extends JFrame {
+public class ObrisiKursGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldSifra;
@@ -20,9 +21,7 @@ public class DodajKursGUI extends JFrame {
 	private JTextField textFieldProdajni;
 	private JTextField textFieldKupovni;
 	private JTextField textFieldSrednji;
-	private JTextField textFieldSkracenica;
-	private JButton btnDodaj;
-	private JButton btnOdustani;
+	private JTextField textFieldSkraceni;
 
 	/**
 	 * Launch the application.
@@ -31,7 +30,7 @@ public class DodajKursGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DodajKursGUI frame = new DodajKursGUI();
+					ObrisiKursGUI frame = new ObrisiKursGUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,9 +42,9 @@ public class DodajKursGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DodajKursGUI() {
-		setTitle("Dodaj kurs");
+	public ObrisiKursGUI() {
 		setResizable(false);
+		setTitle("Obrisi kurs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 433, 361);
 		contentPane = new JPanel();
@@ -53,80 +52,102 @@ public class DodajKursGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblSifra = new JLabel("Sifra");
-		lblSifra.setBounds(10, 27, 193, 14);
-		contentPane.add(lblSifra);
-
 		textFieldSifra = new JTextField();
-		textFieldSifra.setBounds(10, 45, 193, 20);
+		textFieldSifra.setEditable(false);
+		textFieldSifra.setBounds(10, 36, 189, 20);
 		contentPane.add(textFieldSifra);
 		textFieldSifra.setColumns(10);
 
+		JLabel lblSifra = new JLabel("Sifra");
+		lblSifra.setBounds(10, 11, 189, 14);
+		contentPane.add(lblSifra);
+
 		JLabel lblNaziv = new JLabel("Naziv");
-		lblNaziv.setBounds(215, 27, 193, 14);
+		lblNaziv.setBounds(209, 11, 189, 14);
 		contentPane.add(lblNaziv);
 
 		textFieldNaziv = new JTextField();
-		textFieldNaziv.setBounds(215, 45, 193, 20);
+		textFieldNaziv.setEditable(false);
+		textFieldNaziv.setBounds(209, 36, 189, 20);
 		contentPane.add(textFieldNaziv);
 		textFieldNaziv.setColumns(10);
 
 		JLabel lblProdajniKurs = new JLabel("Prodajni kurs");
-		lblProdajniKurs.setBounds(10, 115, 193, 14);
+		lblProdajniKurs.setBounds(10, 81, 189, 14);
 		contentPane.add(lblProdajniKurs);
 
 		textFieldProdajni = new JTextField();
-		textFieldProdajni.setBounds(10, 140, 193, 20);
+		textFieldProdajni.setEditable(false);
+		textFieldProdajni.setBounds(10, 106, 189, 20);
 		contentPane.add(textFieldProdajni);
 		textFieldProdajni.setColumns(10);
 
 		JLabel lblKupovniKurs = new JLabel("Kupovni kurs");
-		lblKupovniKurs.setBounds(215, 115, 193, 14);
+		lblKupovniKurs.setBounds(209, 81, 189, 14);
 		contentPane.add(lblKupovniKurs);
 
 		textFieldKupovni = new JTextField();
-		textFieldKupovni.setBounds(215, 140, 193, 20);
+		textFieldKupovni.setEditable(false);
+		textFieldKupovni.setBounds(209, 106, 189, 20);
 		contentPane.add(textFieldKupovni);
 		textFieldKupovni.setColumns(10);
 
 		JLabel lblSrednjiKurs = new JLabel("Srednji kurs");
-		lblSrednjiKurs.setBounds(10, 203, 193, 14);
+		lblSrednjiKurs.setBounds(10, 158, 189, 14);
 		contentPane.add(lblSrednjiKurs);
 
 		textFieldSrednji = new JTextField();
-		textFieldSrednji.setBounds(10, 228, 193, 20);
+		textFieldSrednji.setEditable(false);
+		textFieldSrednji.setBounds(10, 183, 189, 20);
 		contentPane.add(textFieldSrednji);
 		textFieldSrednji.setColumns(10);
 
 		JLabel lblSkraceniNaziv = new JLabel("Skraceni naziv");
-		lblSkraceniNaziv.setBounds(215, 203, 193, 14);
+		lblSkraceniNaziv.setBounds(209, 158, 189, 14);
 		contentPane.add(lblSkraceniNaziv);
 
-		textFieldSkracenica = new JTextField();
-		textFieldSkracenica.setBounds(215, 228, 193, 20);
-		contentPane.add(textFieldSkracenica);
-		textFieldSkracenica.setColumns(10);
+		textFieldSkraceni = new JTextField();
+		textFieldSkraceni.setEditable(false);
+		textFieldSkraceni.setBounds(209, 183, 189, 20);
+		contentPane.add(textFieldSkraceni);
+		textFieldSkraceni.setColumns(10);
 
-		btnDodaj = new JButton("Dodaj");
-		btnDodaj.addActionListener(new ActionListener() {
+		JCheckBox chckbxZaistaObrisiKurs = new JCheckBox("Zaista obrisi kurs");
+		
+
+		chckbxZaistaObrisiKurs.setBounds(10, 232, 189, 23);
+		contentPane.add(chckbxZaistaObrisiKurs);
+
+		JButton btnObrisi = new JButton("Obrisi");
+		btnObrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String txt = "Sifra: " + textFieldSifra.getText() + " Naziv: " + textFieldNaziv.getText()
 						+ " Kupovni kurs: " + textFieldKupovni.getText() + " Srednji kurs: "
 						+ textFieldSrednji.getText() + " Prodajni kurs: " + textFieldProdajni.getText()
-						+ " Skracenica: " + textFieldSkracenica.getText();
+						+ " Skracenica: " + textFieldSkraceni.getText();
 				MenjacnicaGUI.textArea.setText(MenjacnicaGUI.textArea.getText() + txt);
 			}
 		});
-		btnDodaj.setBounds(10, 277, 193, 23);
-		contentPane.add(btnDodaj);
+		btnObrisi.setEnabled(false);
+		btnObrisi.setBounds(10, 284, 189, 23);
+		contentPane.add(btnObrisi);
 
-		btnOdustani = new JButton("Odustani");
+		JButton btnOdustani = new JButton("Odustani");
 		btnOdustani.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();// sluzi da zatvori prozor ali da app nastavi sa radom
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
-		btnOdustani.setBounds(215, 277, 193, 23);
+		btnOdustani.setBounds(209, 284, 189, 23);
 		contentPane.add(btnOdustani);
+		chckbxZaistaObrisiKurs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (chckbxZaistaObrisiKurs.isSelected()) {
+					btnObrisi.setEnabled(true);
+				}else{
+					btnObrisi.setEnabled(false);
+				}
+			}
+		});
 	}
 }
