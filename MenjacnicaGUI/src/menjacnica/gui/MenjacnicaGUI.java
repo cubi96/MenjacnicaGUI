@@ -198,7 +198,7 @@ public class MenjacnicaGUI extends JFrame {
 						File file = jf.getSelectedFile();
 						txt = "" + file.getAbsolutePath();
 						if (txt != "") {
-							textArea.setText(textArea.getText() + "Putanja ucitanog fajla je: " + txt);
+							textArea.append( "Putanja ucitanog fajla je: " + txt + "\n");
 						}
 					}
 				}
@@ -222,7 +222,7 @@ public class MenjacnicaGUI extends JFrame {
 						String txt = "";
 						txt = file.getAbsolutePath();
 						if(!txt.equals("")){
-							textArea.setText(textArea.getText() + txt + "\n");
+							textArea.append( "Putanja sacuvanog fajla je: " + txt + "\n");
 						}
 					}
 					
